@@ -1,0 +1,56 @@
+# === Python cache & compiled files ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.so
+*.egg-info/
+*.egg
+*.log
+
+# === Virtual environment ===
+venv/
+.env/
+.venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# === Jupyter Notebook checkpoints ===
+.ipynb_checkpoints/
+
+# === VSCode / PyCharm settings ===
+.vscode/
+.idea/
+
+# === OS generated files ===
+.DS_Store
+Thumbs.db
+
+# === Notebook output files ===
+*.out
+*.pdf
+*.png
+*.svg
+
+# === Env config ===
+.env
+*.env
+
+# === MyPy / Pyright / Pytest cache ===
+.mypy_cache/
+.pytest_cache/
+.pytype/
+.cache/
+
+# === Coverage / Testing ===
+htmlcov/
+.coverage
+coverage.xml
+
+# === PyInstaller ===
+dist/
+build/
+*.spec
