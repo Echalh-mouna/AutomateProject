@@ -9,8 +9,8 @@ from model.automate import Automate
 
 
 class AnalyseAutomateWindow(QWidget):
-    def _init_(self):
-        super()._init_()
+    def __init__(self):
+        super().__init__()
         self.setWindowTitle("Analyse des Automates")
         self.resize(700, 500)
         self.automate = None
@@ -93,7 +93,7 @@ class AnalyseAutomateWindow(QWidget):
                     self,
                     "Sauvegarder l'automate minimisé",
                     "",
-                    "Fichiers JSON (.json);;Tous les fichiers ()"
+                    "Fichiers JSON (*.json);;Tous les fichiers (*)"
                 )
                 if chemin:
                     with open(chemin, "w", encoding="utf-8") as f:
@@ -154,7 +154,7 @@ class AnalyseAutomateWindow(QWidget):
             QMessageBox.critical(self, "Erreur", f"Erreur lors de la déterminisation : {str(e)}")
             return
 
-        # Afficher la représentation de l'AFD (attention à la méthode _str_ de Automate)
+        # Afficher la représentation de l'AFD (attention à la méthode __str__ de Automate)
         self.result.setText(str(afd))
 
         # Proposer la sauvegarde de l'AFD

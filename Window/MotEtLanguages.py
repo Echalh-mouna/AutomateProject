@@ -11,8 +11,8 @@ from model.automate import Automate
 
 
 class MotEtLangages(QWidget):
-    def _init_(self, automate, autres_automates: dict):
-        super()._init_()
+    def __init__(self, automate, autres_automates: dict):
+        super().__init__()
         self.automate = automate
         self.autre_automate = None
         self.autres_automates = autres_automates

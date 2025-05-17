@@ -6,7 +6,7 @@ from model.transition import Transition
 
 
 class Automate:
-    def _init_(self, nom, alphabet=None):
+    def __init__(self, nom, alphabet=None):
         self.nom = nom
         self.etats = {}  # dict : {nom: Etat}
         self.transitions = []  # liste d'objets Transition
@@ -513,7 +513,7 @@ class Automate:
 
         return automate_min
 
-    def _repr_(self):
+    def __repr__(self):
         res = f"Automate : {self.nom}\n"
         res += f"États initiaux : {[e.nom for e in self.etats.values() if e.est_initial]}\n"
         res += f"États finaux : {[e.nom for e in self.etats.values() if e.est_final]}\n"

@@ -9,8 +9,8 @@ from model.automate import Automate
 
 
 class AccueilWindow(QWidget):
-    def _init_(self):
-        super()._init_()
+    def __init__(self):
+        super().__init__()
         self.setWindowTitle("Accueil - Application de Gestion des Automates")
         self.resize(500, 400)
         layout = QVBoxLayout(self)

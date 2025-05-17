@@ -1,8 +1,8 @@
 class Transition:
-    def _init_(self, etat_source, symbole, etat_destination):
-        self.etat_source = etat_source
+    def __init__(self, source, symbole, destination):
+        self.source = source
         self.symbole = symbole
-        self.etat_destination = etat_destination
+        self.destination = destination
 
-    def _repr_(self):
-        return f"{self.etat_source} -{self.symbole}-> {self.etat_destination}"
+    def __repr__(self):
+        return f"{self.source} -{self.symbole}-> {self.destination}"

@@ -1,6 +1,6 @@
 class Alphabet:
-    def _init_(self, symboles):
+    def __init__(self, symboles):
         self.symboles = set(symboles)
 
-    def _repr_(self):
+    def __repr__(self):
         return "{" + ", ".join(self.symboles) + "}"

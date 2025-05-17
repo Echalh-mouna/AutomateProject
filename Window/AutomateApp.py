@@ -12,8 +12,8 @@ from model.automate import Automate
 
 
 class AutomateApp(QWidget):
-    def _init_(self):
-        super()._init_()
+    def __init__(self):
+        super().__init__()
         self.setWindowTitle("Gestion Basique des Automates")
         self.resize(1000, 600)
         self.automate = None
