@@ -1,5 +1,6 @@
 from collections import deque
 from itertools import product
+import graphviz
 
 from model.etat import Etat
 from model.transition import Transition
@@ -163,23 +164,48 @@ class Automate:
         return True
 
     def to_graphviz(self, filename="automate"):
-        from graphviz import Digraph
-        dot = Digraph(format='png')
+        """Génère une représentation graphique de l'automate avec Graphviz"""
+        dot = graphviz.Digraph(format='png')
         dot.attr(rankdir='LR')
 
+        # Ajouter les états
         for etat in self.etats.values():
             shape = "doublecircle" if etat.est_final else "circle"
-            dot.node(etat.nom, shape=shape)
+            dot.node(etat.nom, etat.nom, shape=shape)
 
+        # Ajouter les états initiaux
         for etat in self.etats.values():
             if etat.est_initial:
                 dot.node("init", label="", shape="none")
                 dot.edge("init", etat.nom)
 
+        # Ajouter les transitions
         for t in self.transitions:
             dot.edge(t.source, t.destination, label=t.symbole)
 
+        # Générer le fichier
         dot.render(filename=filename, cleanup=True)
+        return dot
+
+    def visualiser(self, chemin_sortie=None):
+        """Génère et sauvegarde une visualisation de l'automate"""
+        try:
+            dot = self.to_graphviz()
+            if chemin_sortie:
+                # Sauvegarder au format PNG
+                dot.render(chemin_sortie, format='png', cleanup=True)
+                return chemin_sortie + '.png'
+            else:
+                # Sauvegarder dans un dossier temporaire avec un nom unique
+                import tempfile
+                import os
+                temp_dir = tempfile.gettempdir()
+                temp_path = os.path.join(temp_dir, f'automate_{self.nom}_{id(self)}')
+                dot.render(temp_path, format='png', cleanup=True)
+                return temp_path + '.png'
+        except Exception as e:
+            print(f"Erreur lors de la visualisation : {str(e)}")
+            return None
 
     def union(self, autre):
         from collections import deque
@@ -382,13 +408,13 @@ class Automate:
         """
         mots_acceptes = set()
 
-        # Vérifie qu’il existe au moins un état initial
+        # Vérifie qu'il existe au moins un état initial
         initiaux = [e.nom for e in self.etats.values() if e.est_initial]
         if not initiaux:
             return list(mots_acceptes)
 
         file = deque()
-        # Chaque élément de la file contient : (état courant, mot formé jusqu’ici)
+        # Chaque élément de la file contient : (état courant, mot formé jusqu'ici)
         for etat in initiaux:
             file.append((etat, ""))
 

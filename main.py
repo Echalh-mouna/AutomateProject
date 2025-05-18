@@ -1,12 +1,14 @@
 import sys
+from pathlib import Path
+from PyQt5.QtWidgets import QApplication
+from interfaceGraphique.MainApplication import MainApplication
 
-from PyQt5.QtWidgets import (
-    QApplication
-)
+# Créer le dossier data s'il n'existe pas
+data_dir = Path("data")
+data_dir.mkdir(exist_ok=True)
 
-from interfaceGraphique.AcceuilWindow import AccueilWindow
-
+# Initialiser l'application
 app = QApplication(sys.argv)
-accueil = AccueilWindow()
-accueil.show()
+main_app = MainApplication()
+main_app.start()
 sys.exit(app.exec_())
